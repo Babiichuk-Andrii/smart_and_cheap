@@ -1,0 +1,27 @@
+{% for room in category.rooms.all %}
+    <div class="card mt-3 " style="width: 45rem;">
+        <img src="{{ room.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <div class="card-header">{{ room.title }}</div>
+            <p class="card-text">{{ room.description }}</p>
+            <a href="#" onclick="history.back();return false;" class="btn btn-dark mb-2">Вернуться назад</a>
+            <a href="{{ room.get_absolute_url }}"
+               {% if room.type_of_room %}
+                class="btn btn-danger mb-2"
+               {% else %}
+                class="btn btn-dark mb-2"
+               {% endif %}>Перейти к комнате</a>
+                {% if room.type_of_room %}
+                    <div class="alert alert-danger" role="alert">
+                        Вход ограничен <a href="#" class="alert-link">создателем</a>.
+                    </div>
+                {% endif %}
+            <div class="card-footer">
+                <small class="text-muted"><p>Количество статей -
+                    <span class="badge bg-dark rounded-pill">{{ room.topic.count }}</span></p>
+                    <p class="text-muted" >Датта создания : {{ room.creation_date }}</p>
+                </small>
+            </div>
+        </div>
+    </div>
+{% endfor %}

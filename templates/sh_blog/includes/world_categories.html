@@ -1,0 +1,19 @@
+{% for category in world.categories.all %}
+    <div class="card text-center mt-3 bg-" style="width: 45rem;">
+        <img src="{{ category.image.url }}" class="card-img-top" alt="...">
+        <div class="card-header">
+            <h5 class="card-title">{{ category.title }}</h5>
+        </div>
+        <div>
+            <p class="card-text">{{ category.description }}</p>
+            <a href="#" onclick="history.back();return false;" class="btn btn-dark mb-2">Вернуться назад</a>
+            <a href="{{ category.get_absolute_url }}" class="btn btn-dark mb-2">Перейти к категории</a>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted"><p>Общее количество комнат -
+                <span class="badge bg-dark rounded-pill">{{ category.rooms.count }}</span></p>
+                <p class="text-muted" >Датта создания : {{ category.creation_date }}</p>
+            </small>
+        </div>
+    </div>
+{% endfor %}

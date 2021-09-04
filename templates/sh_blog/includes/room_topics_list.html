@@ -1,0 +1,12 @@
+{% block content %}
+    <div class="list-group mt-3" >
+        <button type="button" class="list-group-item list-group-item-action active bg-dark" aria-current="true">
+            Список статей:
+        </button>
+        {% for topic in categoryrooms.topic.all %}
+            <a href="{{ topic.get_absolute_url }}" class="list-group-item list-group-item-dark">
+                {{ topic.title }}
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

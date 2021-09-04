@@ -1,0 +1,16 @@
+{% for world in worlds %}
+    <div class="card mt-3 " style="width: 45rem;">
+        <img src="{{ world.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <div class="card-header">{{ world.title }}</div>
+            <p class="card-text">{{ world.description }}</p>
+            <a href="{{ world.get_absolute_url }}" class="btn btn-dark mb-2">Перейти к миру</a>
+            <div class="card-footer">
+                <small class="text-muted"><p>Количество категорий -
+                    <span class="badge bg-dark rounded-pill">{{ world.categories.count }}</span></p>
+                    <p class="text-muted" >Датта создания : {{ world.creation_date }}</p>
+                </small>
+            </div>
+        </div>
+    </div>
+{% endfor %}

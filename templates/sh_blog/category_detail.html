@@ -1,0 +1,16 @@
+{% extends 'sh_blog/base.html' %}
+{% block title %}{{ category.title }} - {{ block.super }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    {% include 'sh_blog/includes/category_rooms.html' %}
+                </div>
+                <div class="col-4">
+                    {% include 'sh_blog/includes/category_rooms_list.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

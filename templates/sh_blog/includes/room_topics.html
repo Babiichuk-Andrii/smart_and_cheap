@@ -1,0 +1,21 @@
+{% block content %}
+    {% for topic in categoryrooms.topic.all %}
+        <div class="card text-center mt-3 bg-" style="width: 45rem;">
+            <img src="{{ topic.topic_image.url }}" class="card-img-top" alt="...">
+            <div class="card-header">
+                <h5 class="card-title">{{ topic.title }}</h5>
+            </div>
+            <div>
+                <p class="card-text">{{ topic.body|truncatewords:20 }}</p>
+                <a href="#" onclick="history.back();return false;" class="btn btn-dark mb-2">Вернуться назад</a>
+                <a href="{{ topic.get_absolute_url }}" class="btn btn-dark mb-2">Перейти к статье</a>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted"><p>Общее количество комнат -
+                    <span class="badge bg-dark rounded-pill">{{ topic.rooms.count }}</span></p>
+                    <p class="text-muted" >Датта создания : {{ topic.creation_date }}</p>
+                </small>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

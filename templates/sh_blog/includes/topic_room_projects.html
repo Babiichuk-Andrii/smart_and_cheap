@@ -1,0 +1,15 @@
+<div class="list-group mt-3" >
+    <button type="button" class="list-group-item list-group-item-action active bg-dark" aria-current="true">
+        Список проэктов:
+    </button>
+    {% for project in topicrooms.projects.all %}
+        <a href="{{ project.get_absolute_url }}"
+           {% if project.type_of_project %}
+                class="list-group-item list-group-item-danger"
+           {% else %}
+                class="list-group-item list-group-item-dark"
+           {% endif %}>
+                {{ project.title }}
+        </a>
+    {% endfor %}
+</div>
