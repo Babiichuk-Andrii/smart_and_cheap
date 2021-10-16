@@ -1,0 +1,15 @@
+{% extends 'sh_blog/base.html' %}
+{% block title %} Изменение категории - {{ obj.title }} - {{ block.super }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    {% include 'sh_blog/includes/edit_category_form.html' %}
+                </div>
+                <div class="col-4">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

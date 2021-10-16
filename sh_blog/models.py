@@ -2,7 +2,15 @@
 from django.db import models
 from django.shortcuts import reverse
 
+from django.utils.text import slugify
+from time import time
+
 # Create your models here.
+
+
+def gen_slug(title):
+    new_slug = slugify(title, allow_unicode=True)
+    return new_slug + '-' + str(int(time()))
 
 
 class World(models.Model):
@@ -10,13 +18,21 @@ class World(models.Model):
     description = models.TextField('Описание мира')
     image = models.ImageField('Изображение', upload_to='worlds_images/')
     creation_date = models.DateTimeField('Датта создания', auto_now_add=True)
-    slug = models.SlugField(max_length=160, unique=True)
+    slug = models.SlugField(max_length=160, blank=True, unique=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('world_detail_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('edit_world_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Мир'
@@ -29,13 +45,21 @@ class Category(models.Model):
     description = models.TextField('Описание категории')
     image = models.ImageField('Изображение', upload_to='categories_images/')
     creation_date = models.DateTimeField('Датта создания', auto_now_add=True)
-    slug = models.SlugField(max_length=160, unique=True)
+    slug = models.SlugField(max_length=160, unique=True, blank=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('category_detail_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('edit_category_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Категория'
@@ -49,13 +73,21 @@ class CategoryRooms(models.Model):
     description = models.TextField('Описание комнаты')
     image = models.ImageField('Изображение', upload_to='category_rooms_images/')
     creation_date = models.DateTimeField('Датта создания', auto_now_add=True)
-    slug = models.SlugField(max_length=160, unique=True)
+    slug = models.SlugField(max_length=160, unique=True, blank=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('category_room_detail_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('edit_category_room_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Комната категории'
@@ -71,13 +103,21 @@ class Topic(models.Model):
     )
     creation_date = models.DateTimeField('Датта создания', auto_now_add=True)
     update_date = models.DateTimeField('Датта редактирования', auto_now=True)
-    slug = models.SlugField(max_length=160, unique=True)
+    slug = models.SlugField(max_length=160, unique=True, blank=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('topic_details_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('edit_topic_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Статья'
@@ -91,13 +131,21 @@ class TopicRooms(models.Model):
     description = models.TextField('Описание комнаты')
     image = models.ImageField('Изображение', upload_to='topic_rooms_images/')
     creation_date = models.DateTimeField('Датта создания', auto_now_add=True)
-    slug = models.SlugField(max_length=160, unique=True)
+    slug = models.SlugField(max_length=160, unique=True, blank=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('topic_room_detail_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('edit_topic_room_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Комната статьи'
@@ -112,13 +160,21 @@ class RoomsProjects(models.Model):
     body = models.TextField('Полное описание проэкта', blank=True)
     image = models.ImageField('Изображение', upload_to='rooms_projects_images/')
     creation_date = models.DateTimeField('Датта создания', auto_now_add=True)
-    slug = models.SlugField(max_length=160, unique=True)
+    slug = models.SlugField(max_length=160, unique=True, blank=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('project_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('edit_project_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Проэкт комнаты'
