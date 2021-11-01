@@ -1,6 +1,8 @@
 {% for category in world.categories.all %}
     <div class="card text-center mt-3 bg-" style="width: 45rem;">
-        <img src="{{ category.image.url }}" class="card-img-top" alt="...">
+        {% if category.image %}
+            <img src="{{ category.image.url }}" class="card-img-top" alt="...">
+        {% endif %}
         <div class="card-header">
             <h5 class="card-title">{{ category.title }}</h5>
         </div>

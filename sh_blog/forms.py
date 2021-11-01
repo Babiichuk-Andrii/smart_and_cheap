@@ -20,7 +20,7 @@ class CategoryForm(forms.ModelForm):
         fields = ['world', 'title', 'description']
 
         widgets = {
-            'world': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'world': forms.Select(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.TextInput(attrs={'class': 'form-control'})
         }
@@ -32,7 +32,7 @@ class CategoryRoomsForm(forms.ModelForm):
         fields = ['category', 'title', 'type_of_room', 'description']
 
         widgets = {
-            'category': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'type_of_room': forms.Select(),
             'description': forms.TextInput(attrs={'class': 'form-control'})
@@ -45,7 +45,7 @@ class TopicForm(forms.ModelForm):
         fields = ['room', 'title', 'body']
 
         widgets = {
-            'room': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'room': forms.Select(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'})
         }
@@ -57,7 +57,7 @@ class TopicRoomsForm(forms.ModelForm):
         fields = ['topic', 'title', 'type_of_room', 'description']
 
         widgets = {
-            'topic': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'topic': forms.Select(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'type_of_room': forms.Select(),
             'description': forms.TextInput(attrs={'class': 'form-control'})
@@ -70,7 +70,7 @@ class RoomsProjectsForm(forms.ModelForm):
         fields = ['room', 'title', 'type_of_project', 'description', 'body']
 
         widgets = {
-            'room': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'room': forms.Select(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'type_of_project': forms.Select(),
             'description': forms.TextInput(attrs={'class': 'form-control'}),

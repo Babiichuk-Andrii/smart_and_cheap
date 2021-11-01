@@ -1,6 +1,8 @@
 {% for room in category.rooms.all %}
     <div class="card mt-3 " style="width: 45rem;">
-        <img src="{{ room.image.url }}" class="card-img-top" alt="...">
+        {% if room.image %}
+            <img src="{{ room.image.url }}" class="card-img-top" alt="...">
+        {% endif %}
         <div class="card-body text-center">
             <div class="card-header">{{ room.title }}</div>
             <p class="card-text">{{ room.description }}</p>

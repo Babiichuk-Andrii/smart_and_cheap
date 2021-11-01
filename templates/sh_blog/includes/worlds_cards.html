@@ -1,6 +1,8 @@
 {% for world in worlds %}
     <div class="card mt-3 " style="width: 45rem;">
-        <img src="{{ world.image.url }}" class="card-img-top" alt="...">
+        {% if world.image %}
+            <img src="{{ world.image.url }}" class="card-img-top" alt="...">
+        {% endif %}
         <div class="card-body text-center">
             <div class="card-header">{{ world.title }}</div>
             <p class="card-text">{{ world.description }}</p>

@@ -1,7 +1,9 @@
 {% block content %}
     {% for topic in categoryrooms.topic.all %}
         <div class="card text-center mt-3 bg-" style="width: 45rem;">
-            <img src="{{ topic.topic_image.url }}" class="card-img-top" alt="...">
+            {% if topic.topic.image %}
+                <img src="{{ topic.topic_image.url }}" class="card-img-top" alt="...">
+            {% endif %}
             <div class="card-header">
                 <h5 class="card-title">{{ topic.title }}</h5>
             </div>
